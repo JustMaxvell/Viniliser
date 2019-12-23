@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Viniliser</title>
+    <link rel="shortcut icon" href="img/disk.png" type="image/x-icon">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+
+  <body>
+    <div class="wrapper">
+      <span class="songTitle">nirvana - smells like teen spirit</span>
+      <div class="player">
+        <div class="pickup" style="transform: rotate(0deg); z-index: 1;"><img src="img/pickup.png" alt=""></div>
+        <div class="playButton"></div>
+        <div class="timer"></div>
+      </div>
+      <div class="collection">
+        <span class="collection__moveLeft inactiveArrow"></span>
+        <div class="collection__song">
+          <img class="label" src="img/nirvana.jpg" alt="">
+          <div class="disk">
+            <img src="img/disk.png" alt="">
+          </div>
+        </div>
+        <span class="collection__moveRight"></span>
+      </div>
+      <audio src="music/nirvana - smells like teen spirit.mp3"></audio>
+    </div>
+
+    <script src="bundle.js"></script>
+  </body>
+
+</html>
