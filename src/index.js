@@ -19,6 +19,8 @@ const pickup = document.querySelector('.pickup');
 const label = document.querySelector('.label');
 const disk = document.querySelector('.disk'); 
   disk.dataset.status = 'unset';
+const vinilla = document.querySelector('.disk img'); 
+
 const moveLeft = document.querySelector('.collection__moveLeft');
 const moveRight = document.querySelector('.collection__moveRight'); 
 
@@ -57,14 +59,19 @@ disk.onclick = (e) => {
   if (playButton.dataset.status === 'active') {
   let cursorPosition;
 
+  console.log(e.clientY);
+  
+  // Очень важно, что проект не предусмотрен под response и функция перемотки может работать некорректно по Y 
+  // на других разрешениях или мобильной версии
+
   if ((e.clientX-55) >= 0 && (e.clientX-55) <= 100) {
     cursorPosition = e.clientX-55;
   } else if ((e.clientX-55) >= 250 && (e.clientX-55) <= 350) {
     cursorPosition = ((e.clientX-55)-350)*(-1);
-  } else if ((e.clientY-80) >= 0 && (e.clientY-80) <= 100) {
-    cursorPosition = e.clientY-80;
-  } else if ((e.clientY-80) >= 250 && (e.clientY-80) <= 350) {
-    cursorPosition = ((e.clientY-80)-350)*(-1);
+  } else if ((e.clientY-170) >= 0 && (e.clientY-170) <= 100) {
+    cursorPosition = e.clientY-170;
+  } else if ((e.clientY-170) >= 250 && (e.clientY-170) <= 350) {
+    cursorPosition = ((e.clientY-170)-350)*(-1);
   }
 
   if (cursorPosition < 0) {
@@ -100,7 +107,7 @@ function playAndPause () {
 
     listenerId = setInterval (listener, 1000);
 
-    disk.classList.add('rotateDisk');
+    vinilla.classList.add('rotateDisk');
 
     audio.play();
   } else if (playButton.dataset.status === 'active') {
@@ -110,7 +117,7 @@ function playAndPause () {
 
     clearInterval(pickupMoveTimer);
 
-    disk.classList.remove('rotateDisk'); 
+    vinilla.classList.remove('rotateDisk'); 
 
     audio.pause();
   } else {
@@ -144,7 +151,7 @@ function moveDisk () {
     pickup.dataset.status = 'inactive';
     changePickupPosition ();
 
-    disk.classList.remove('rotateDisk'); 
+    vinilla.classList.remove('rotateDisk'); 
   }
 }
 
@@ -194,7 +201,7 @@ function listener () {
 
     switchPlayer ();
 
-    disk.classList.remove('rotateDisk'); 
+    vinilla.classList.remove('rotateDisk'); 
 
     clearInterval(pickupMoveTimer);
     pickup.dataset.status = 'startPosition';
