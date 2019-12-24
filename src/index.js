@@ -53,31 +53,37 @@ moveRight.onclick = () => {
   }
 }
 
-// disk.onclick = (e) => {
-//   if (playButton.dataset.status === 'active') {
-//   let cursorPosition;
+disk.onclick = (e) => {
+  if (playButton.dataset.status === 'active') {
+  let cursorPosition;
 
-//   if ((e.clientX-55) >= 0 && (e.clientX-55) <= 100) {
-//     cursorPosition = e.clientX-55;
-//   } else if ((e.clientX-55) >= 250 && (e.clientX-55) <= 350) {
-//     cursorPosition = (e.clientX-55)-250;
-//   } else if ((e.clientY-80) >= 0 && (e.clientY-80) <= 100) {
-//     cursorPosition = e.clientY-80;
-//   } else if ((e.clientY-80) >= 250 && (e.clientY-80) <= 350) {
-//     cursorPosition = (e.clientY-80)-250;
-//   }
+  if ((e.clientX-55) >= 0 && (e.clientX-55) <= 100) {
+    cursorPosition = e.clientX-55;
+  } else if ((e.clientX-55) >= 250 && (e.clientX-55) <= 350) {
+    cursorPosition = ((e.clientX-55)-350)*(-1);
+  } else if ((e.clientY-80) >= 0 && (e.clientY-80) <= 100) {
+    cursorPosition = e.clientY-80;
+  } else if ((e.clientY-80) >= 250 && (e.clientY-80) <= 350) {
+    cursorPosition = ((e.clientY-80)-350)*(-1);
+  }
 
-//   let songPosition = Math.floor(Math.floor(audio.duration)*(cursorPosition/100));
+  if (cursorPosition < 0) {
+    cursorPosition = 0;
+  } else if (cursorPosition > 100) {
+    cursorPosition = 100;
+  }
 
-//   currentTime = songPosition;
-//   audio.currentTime = songPosition;
-//   timer.textContent = `${normalCurrentTime} / ${normalDuration}`;
-//   clearInterval(pickupMoveTimer);
-//   listenerId = setInterval (listener, 1000);
-//   changePickupPosition ();
-//   }
+  let songPosition = Math.floor(Math.floor(audio.duration)*(cursorPosition/100));
 
-// }
+  currentTime = songPosition;
+  audio.currentTime = songPosition;
+  timer.textContent = `${normalCurrentTime} / ${normalDuration}`;
+  clearInterval(pickupMoveTimer);
+  listenerId = setInterval (listener, 1000);
+  changePickupPosition ();
+  }
+
+}
 
 
 function playAndPause () {
